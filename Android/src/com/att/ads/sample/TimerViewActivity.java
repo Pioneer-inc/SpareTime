@@ -830,6 +830,17 @@ public class TimerViewActivity extends Activity implements ATTAdViewListener {
 	
 	public void getDriveTime(String startLat, String startLong, String endLat, String endLong)
 	{
+		if (AdsApplication.getInstance().getLatitude() != 0.0) {
+			startLat = String.format("%f", AdsApplication.getInstance()
+					.getLatitude());
+		}
+		if (AdsApplication.getInstance().getLongitude() != 0.0) {
+			startLong = String.format("%f", AdsApplication.getInstance()
+					.getLongitude());
+		}
+		// Redmond home: 47.695144, -122.103796
+		endLat = "47.695144";
+		endLong = "-122.103796";
         // call AsynTask to perform network operation on separate thread
 		String esriRouteToken = "aN-q5mN_Pjy4PyA0lf-zX4Zh0RILCo6ZEmKkCz4uoMMGjIk1gRY1ViPyi_dElojuZzDztD-vgPDEjW0tTVrGJpsoZJQ8ICRr1MBKOhCvELOVjX8Xs6bnmVVBocDxJI_cV46bGpCoiE2wux8awQTHhQ..";
         String strUrl = String.format("http://route.arcgis.com/arcgis/rest/services/World/Route/NAServer/Route_World/solve?token=%s&stops=%s,%s;%s,%s&f=json", 
